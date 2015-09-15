@@ -1,0 +1,19 @@
+﻿using System.Windows;
+using MemoryCards.UI.Models;
+using MemoryCards.UI.ModelViews;
+
+namespace MemoryCards.UI.Views
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            DataContext = new MainViewModel(new Person());
+        }
+    }
+}
