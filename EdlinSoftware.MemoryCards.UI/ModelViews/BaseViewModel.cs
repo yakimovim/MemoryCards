@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MemoryCards.UI.ModelViews
+namespace EdlinSoftware.MemoryCards.UI.ModelViews
 {
     internal abstract class BaseViewModel : INotifyPropertyChanged
     {

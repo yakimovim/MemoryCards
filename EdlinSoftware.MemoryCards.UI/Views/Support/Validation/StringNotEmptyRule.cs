@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Windows.Controls;
-using MemoryCards.UI.Properties;
+using EdlinSoftware.MemoryCards.UI.Properties;
 
-namespace MemoryCards.UI.Views.Support.Validation
+namespace EdlinSoftware.MemoryCards.UI.Views.Support.Validation
 {
     public class StringNotEmptyRule : ValidationRule
     {

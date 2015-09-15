@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryCards.UI", "MemoryCards.UI\MemoryCards.UI.csproj", "{EC822654-CDE4-4EE2-B033-55125CD11B80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdlinSoftware.MemoryCards.UI", "EdlinSoftware.MemoryCards.UI\EdlinSoftware.MemoryCards.UI.csproj", "{EC822654-CDE4-4EE2-B033-55125CD11B80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

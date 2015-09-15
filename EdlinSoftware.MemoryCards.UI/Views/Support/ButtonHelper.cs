@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MemoryCards.UI.Views.Support.Validation;
+using EdlinSoftware.MemoryCards.UI.Views.Support.Validation;
 
-namespace MemoryCards.UI.Views.Support
+namespace EdlinSoftware.MemoryCards.UI.Views.Support
 {
     public static class ButtonHelper
     {

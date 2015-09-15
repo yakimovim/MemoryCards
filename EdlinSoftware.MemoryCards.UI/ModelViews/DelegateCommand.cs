@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace MemoryCards.UI.ModelViews
+namespace EdlinSoftware.MemoryCards.UI.ModelViews
 {
     internal class DelegateCommand : ICommand
     {

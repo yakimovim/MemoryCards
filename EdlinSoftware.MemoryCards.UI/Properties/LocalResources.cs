@@ -1,4 +1,4 @@
-﻿namespace MemoryCards.UI.Properties
+﻿namespace EdlinSoftware.MemoryCards.UI.Properties
 {
     public class LocalResources : Resources
     {

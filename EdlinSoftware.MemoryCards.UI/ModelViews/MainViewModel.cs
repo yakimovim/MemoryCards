@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
-using MemoryCards.UI.Models;
+using EdlinSoftware.MemoryCards.UI.Models;
 
-namespace MemoryCards.UI.ModelViews
+namespace EdlinSoftware.MemoryCards.UI.ModelViews
 {
     internal class MainViewModel : BaseViewModel
     {

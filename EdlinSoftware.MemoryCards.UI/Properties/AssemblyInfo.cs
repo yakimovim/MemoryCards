@@ -5,12 +5,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MemoryCards.UI")]
+[assembly: AssemblyTitle("EdlinSoftware Memory Cards Game")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Confirmit")]
-[assembly: AssemblyProduct("MemoryCards.UI")]
-[assembly: AssemblyCopyright("Copyright © Confirmit 2015")]
+[assembly: AssemblyCompany("EdlinSoftware")]
+[assembly: AssemblyProduct("EdlinSoftware Memory Cards Game")]
+[assembly: AssemblyCopyright("Copyright © EdlinSoftware 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

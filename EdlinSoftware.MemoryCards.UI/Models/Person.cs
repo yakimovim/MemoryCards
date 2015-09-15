@@ -1,4 +1,4 @@
-﻿namespace MemoryCards.UI.Models
+﻿namespace EdlinSoftware.MemoryCards.UI.Models
 {
     internal class Person
     {

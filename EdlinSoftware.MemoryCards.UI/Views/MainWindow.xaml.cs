@@ -1,8 +1,8 @@
 ﻿using System.Windows;
-using MemoryCards.UI.Models;
-using MemoryCards.UI.ModelViews;
+using EdlinSoftware.MemoryCards.UI.Models;
+using EdlinSoftware.MemoryCards.UI.ModelViews;
 
-namespace MemoryCards.UI.Views
+namespace EdlinSoftware.MemoryCards.UI.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

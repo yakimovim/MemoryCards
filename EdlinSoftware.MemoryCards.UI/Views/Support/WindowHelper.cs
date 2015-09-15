@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace MemoryCards.UI.Views.Support
+namespace EdlinSoftware.MemoryCards.UI.Views.Support
 {
     internal static class WindowHelper
     {

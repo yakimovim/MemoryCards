@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MemoryCards.UI
+namespace EdlinSoftware.MemoryCards.UI
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MemoryCards.UI.Views.Support.Validation
+namespace EdlinSoftware.MemoryCards.UI.Views.Support.Validation
 {
     public static class ValidationHelper
     {
