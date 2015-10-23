@@ -22,5 +22,26 @@ namespace EdlinSoftware.MemoryCards.UI.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("game_config.json")]
+        public string GameConfigFileName {
+            get {
+                return ((string)(this["GameConfigFileName"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Games")]
+        public string GamesFolderName {
+            get {
+                return ((string)(this["GamesFolderName"]));
+            }
+            set {
+                this["GamesFolderName"] = value;
+            }
+        }
     }
 }

@@ -5,24 +5,34 @@
         Title="{Binding Source={StaticResource localResources}, Path=Title}" 
         Icon="/EdlinSoftware.MemoryCards;component/Images/App.png"
         WindowStartupLocation="CenterScreen"
-        Height="206" Width="525">
+        Height="725" Width="1285">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="20">
-            <TextBlock Text="{Binding Source={StaticResource localResources}, Path=EnterYourName}" />
-            <TextBox>
-                <TextBox.Text>
-                    <Binding Path="Name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <val:StringNotEmptyRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-        </StackPanel>
-        <Button Grid.Row="1" Content="{Binding Source={StaticResource localResources}, Path=ClickMe}" Command="{Binding SayHello}" Margin="20"/>
+        <Menu Grid.Row="0">
+            <MenuItem Header="{Binding Source={StaticResource localResources}, Path=GameMenuItem}" >
+                <MenuItem Header="{Binding Source={StaticResource localResources}, Path=GamesMenuItem}"
+                          ItemsSource="{Binding Games}">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding Title}" />
+                            <Setter Property="Command" Value="{Binding StartGameCommand}" />
+                            <Setter Property="CommandParameter" Value="{Binding GameFolder}" />
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="{Binding Source={StaticResource localResources}, Path=ExitMenuItem}"
+                          Command="{Binding ExitCommand}"/>
+            </MenuItem>
+        </Menu>
+        <Rectangle Grid.Row="1" Fill="ForestGreen" >
+        </Rectangle>
+        <Viewbox Grid.Row="1">
+            <Canvas Width="1280" Height="720" Background="DarkGreen">
+            </Canvas>
+        </Viewbox>
     </Grid>
 </Window>

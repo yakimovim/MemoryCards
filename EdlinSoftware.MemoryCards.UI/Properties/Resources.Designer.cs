@@ -79,6 +79,51 @@ namespace EdlinSoftware.MemoryCards.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to leave the game?.
+        /// </summary>
+        public static string ExitConfirmationText {
+            get {
+                return ResourceManager.GetString("ExitConfirmationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit confirmation.
+        /// </summary>
+        public static string ExitConfirmationTitle {
+            get {
+                return ResourceManager.GetString("ExitConfirmationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit....
+        /// </summary>
+        public static string ExitMenuItem {
+            get {
+                return ResourceManager.GetString("ExitMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game.
+        /// </summary>
+        public static string GameMenuItem {
+            get {
+                return ResourceManager.GetString("GameMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Games.
+        /// </summary>
+        public static string GamesMenuItem {
+            get {
+                return ResourceManager.GetString("GamesMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name can&apos;t be empty.
         /// </summary>
         public static string NameCantBeEmpty {
@@ -88,7 +133,7 @@ namespace EdlinSoftware.MemoryCards.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MemoryCards.UI.
+        ///   Looks up a localized string similar to Memory Cards.
         /// </summary>
         public static string Title {
             get {
