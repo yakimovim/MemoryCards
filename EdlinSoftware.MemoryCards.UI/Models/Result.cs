@@ -2,11 +2,17 @@
 
 namespace EdlinSoftware.MemoryCards.UI.Models
 {
-    internal class Result
+    internal abstract class Result
     {
-        protected string _errorMessage;
+        private readonly string _errorMessage;
 
-        public ResultStatus Status { get; protected set; }
+        public ResultStatus Status { get; }
+
+        protected Result(ResultStatus status, string errorMessage = null)
+        {
+            Status = status;
+            _errorMessage = errorMessage;
+        }
 
         public string ErrorMessage
         {
@@ -18,53 +24,16 @@ namespace EdlinSoftware.MemoryCards.UI.Models
                 return _errorMessage;
             }
         }
-
-
-        public static Result CreateSuccess()
-        {
-            var result = new Result
-            {
-                Status = ResultStatus.Success,
-            };
-            return result;
-        }
-
-        public static Result CreateFailure(string errorMessage)
-        {
-            var result = new Result
-            {
-                Status = ResultStatus.Failure,
-                _errorMessage = errorMessage
-            };
-            return result;
-        }
     }
 
-    internal class Result<T> : Result
+    internal abstract class Result<T> : Result
     {
-        protected T _value;
+        private readonly T _value;
 
-        private Result()
-        {}
-
-        public static Result<T> CreateSuccess(T value)
+        protected Result(ResultStatus status, T value, string errorMessage = null)
+            : base(status, errorMessage)
         {
-            var result = new Result<T>
-            {
-                Status = ResultStatus.Success,
-                _value = value
-            };
-            return result;
-        }
-
-        public new static Result<T> CreateFailure(string errorMessage)
-        {
-            var result = new Result<T>
-            {
-                Status = ResultStatus.Failure,
-                _errorMessage = errorMessage
-            };
-            return result;
+            _value = value;
         }
 
         public T Value
@@ -83,5 +52,29 @@ namespace EdlinSoftware.MemoryCards.UI.Models
     {
         Success,
         Failure
+    }
+
+    internal class Success : Result
+    {
+        public Success() : base(ResultStatus.Success)
+        {}
+    }
+
+    internal class Failure : Result
+    {
+        public Failure(string errorMessage) : base(ResultStatus.Failure, errorMessage)
+        { }
+    }
+
+    internal class Success<T> : Result<T>
+    {
+        public Success(T value) : base(ResultStatus.Success, value)
+        { }
+    }
+
+    internal class Failure<T> : Result<T>
+    {
+        public Failure(string errorMessage) : base(ResultStatus.Failure, default(T), errorMessage)
+        { }
     }
 }

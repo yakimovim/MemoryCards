@@ -1,6 +1,7 @@
 ﻿<Window x:Class="EdlinSoftware.MemoryCards.UI.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:EdlinSoftware.MemoryCards.UI.Views.Controls"
         xmlns:val="clr-namespace:EdlinSoftware.MemoryCards.UI.Views.Support.Validation"
         Title="{Binding Source={StaticResource localResources}, Path=Title}" 
         Icon="/EdlinSoftware.MemoryCards;component/Images/App.png"
@@ -28,11 +29,6 @@
                           Command="{Binding ExitCommand}"/>
             </MenuItem>
         </Menu>
-        <Rectangle Grid.Row="1" Fill="ForestGreen" >
-        </Rectangle>
-        <Viewbox Grid.Row="1">
-            <Canvas Width="1280" Height="720" Background="DarkGreen">
-            </Canvas>
-        </Viewbox>
+        <ctrl:GameStageArea Grid.Row="1" Stage="{Binding CurrentStage}"/>
     </Grid>
 </Window>

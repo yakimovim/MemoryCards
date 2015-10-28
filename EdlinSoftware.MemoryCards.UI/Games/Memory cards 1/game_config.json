@@ -3,5 +3,10 @@
     "name": "Stage 1",
     "cardsInGroup": 2,
     "cardsRows": [ 8 ]
+  },
+  {
+    "name": "Stage 2",
+    "cardsInGroup": 2,
+    "cardsRows": [ 5, 5 ]
   }
 ]

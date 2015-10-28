@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Windows.Input;
 using JetBrains.Annotations;
 
@@ -24,18 +23,16 @@ namespace EdlinSoftware.MemoryCards.UI.ModelViews
         /// <summary>
         /// Gets title of the game.
         /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string Title { get; }
+        public string Title {[NotNull] get; }
 
         /// <summary>
         /// Gets game folder.
         /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string GameFolder { get; }
+        public string GameFolder {[NotNull]  get; }
 
         /// <summary>
         /// Gets or sets command to start the game.
         /// </summary>
-        public ICommand StartGameCommand { get; }
+        public ICommand StartGameCommand {[NotNull]  get; }
     }
 }

@@ -12,12 +12,12 @@ namespace EdlinSoftware.MemoryCards.UI.Models
         /// <summary>
         /// Gets title of the game.
         /// </summary>
-        public string Title { get; }
+        public string Title {[NotNull] get; }
 
         /// <summary>
         /// Gets stages of the game.
         /// </summary>
-        public GameStage[] Stages { get; }
+        public GameStage[] Stages {[NotNull] get; }
 
         public Game([NotNull] string title, [NotNull] GameStage[] stages)
         {
@@ -38,17 +38,17 @@ namespace EdlinSoftware.MemoryCards.UI.Models
         /// <summary>
         /// Gets name of the stage.
         /// </summary>
-        public string Name { get; }
+        public string Name {[NotNull] get; }
 
         /// <summary>
         /// Gets number of cards in the group of the same cards.
         /// </summary>
-        public int CardsInGroup { get; }
+        public int CardsInGroup {[NotNull] get; }
 
         /// <summary>
         /// Gets number of cards in each row.
         /// </summary>
-        public int[] CardsRows { get; }
+        public int[] CardsRows {[NotNull] get; }
 
         public GameStage([NotNull] string name, int cardsInGroup, [NotNull] int[] cardsRows)
         {

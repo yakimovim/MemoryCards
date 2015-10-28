@@ -158,12 +158,24 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameReader.cs" />
     <Compile Include="Models\JsonStage.cs" />
     <Compile Include="Models\Result.cs" />
+    <Compile Include="ModelViews\CardViewModel.cs" />
     <Compile Include="ModelViews\GameMenuItemViewModel.cs" />
+    <Compile Include="ModelViews\StageViewModel.cs" />
+    <Compile Include="Views\Controls\CardsPositionsInformation.cs" />
+    <Compile Include="Views\Controls\GameStageArea.xaml.cs">
+      <DependentUpon>GameStageArea.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Support\ButtonHelper.cs" />
+    <Compile Include="Views\Support\Converters\CardStateConverter.cs" />
     <Compile Include="Views\Support\Validation\ValidationHelper.cs" />
     <Compile Include="Views\Support\WindowHelper.cs" />
+    <Page Include="Views\Controls\GameStageArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -218,7 +230,38 @@
     <Resource Include="Images\App.ico" />
     <Resource Include="Images\App.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Games\Memory cards 1\01.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\02.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\03.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\04.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\05.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\06.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\07.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\08.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\09.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Games\Memory cards 1\10.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
