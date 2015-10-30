@@ -11,10 +11,18 @@
         </Rectangle>
         <Viewbox>
             <Canvas x:Name="GameCanvas" Width="1280" Height="720" Background="DarkGreen">
-                <TextBlock x:Name="GameOverTextBox"
+                <TextBlock x:Name="GameWonTextBox"
                          Visibility="Collapsed"
                          Canvas.Top="300" Canvas.Left="400" Foreground="Yellow"
-                         Background="Transparent" FontSize="70" FontWeight="Bold">Game is over</TextBlock>
+                         FontSize="70" FontWeight="Bold">You have won</TextBlock>
+                <StackPanel x:Name="StageIsLostPanel"
+                    Canvas.Top="300" Canvas.Left="250"
+                    Visibility="Collapsed"
+                    Orientation="Horizontal">
+                    <TextBlock Foreground="Red" Margin="10"
+                    FontSize="70" FontWeight="Bold">You have lost</TextBlock>
+                    <Button FontSize="40" FontWeight="Bold" Margin="10" Padding="15,0" Click="OnRestartLevel">Restart the stage</Button>
+                </StackPanel>
             </Canvas>
         </Viewbox>
     </Grid>

@@ -1,11 +1,13 @@
 ﻿[
   {
     "name": "Stage 1",
+    "timeToSolve":  10000,
     "cardsInGroup": 2,
     "cardsRows": [ 8 ]
   },
   {
     "name": "Stage 2",
+    "timeToSolve":  10000,
     "cardsInGroup": 2,
     "cardsRows": [ 5, 5 ]
   }

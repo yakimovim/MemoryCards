@@ -157,19 +157,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Events\EventAggregator.cs" />
+    <Compile Include="Models\CardsPositionProvider.cs" />
+    <Compile Include="Models\CardValuesProvider.cs" />
+    <Compile Include="Models\EventBroker.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameReader.cs" />
+    <Compile Include="Models\GameStage.cs" />
+    <Compile Include="Models\ImagesProvider.cs" />
     <Compile Include="Models\JsonStage.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="ModelViews\CardViewModel.cs" />
     <Compile Include="ModelViews\GameMenuItemViewModel.cs" />
-    <Compile Include="ModelViews\StageViewModel.cs" />
+    <Compile Include="ModelViews\StageCards.cs" />
     <Compile Include="Views\Controls\CardsPositionsInformation.cs" />
     <Compile Include="Views\Controls\GameStageArea.xaml.cs">
       <DependentUpon>GameStageArea.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Support\ButtonHelper.cs" />
     <Compile Include="Views\Support\Converters\CardStateConverter.cs" />
+    <Compile Include="Views\Support\Converters\ProgressBarVisibilityConverter.cs" />
     <Compile Include="Views\Support\Validation\ValidationHelper.cs" />
     <Compile Include="Views\Support\WindowHelper.cs" />
     <Page Include="Views\Controls\GameStageArea.xaml">

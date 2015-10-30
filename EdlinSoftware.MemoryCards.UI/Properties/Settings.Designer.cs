@@ -32,15 +32,21 @@ namespace EdlinSoftware.MemoryCards.UI.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Games")]
         public string GamesFolderName {
             get {
                 return ((string)(this["GamesFolderName"]));
             }
-            set {
-                this["GamesFolderName"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int TimerIntervalInMilliseconds {
+            get {
+                return ((int)(this["TimerIntervalInMilliseconds"]));
             }
         }
     }

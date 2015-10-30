@@ -5,8 +5,11 @@
     <Setting Name="GameConfigFileName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">game_config.json</Value>
     </Setting>
-    <Setting Name="GamesFolderName" Type="System.String" Scope="User">
+    <Setting Name="GamesFolderName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Games</Value>
+    </Setting>
+    <Setting Name="TimerIntervalInMilliseconds" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">50</Value>
     </Setting>
   </Settings>
 </SettingsFile>

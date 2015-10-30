@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClickMe" xml:space="preserve">
-    <value>Click Me</value>
-  </data>
-  <data name="EnterYourName" xml:space="preserve">
-    <value>Enter your name:</value>
-  </data>
   <data name="ExitConfirmationText" xml:space="preserve">
     <value>Are you sure you want to leave the game?</value>
   </data>

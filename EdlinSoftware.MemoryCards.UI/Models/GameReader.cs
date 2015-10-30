@@ -50,7 +50,13 @@ namespace EdlinSoftware.MemoryCards.UI.Models
                 return new Failure<Game>(jsonStagesResult.ErrorMessage);
             }
 
-            var validationResult = ValidateStages(jsonStagesResult.Value);
+            var numberOfImages = GetNumberOfImages(gameFolder);
+            if (numberOfImages.Status == ResultStatus.Failure)
+            {
+                return new Failure<Game>(numberOfImages.ErrorMessage);
+            }
+
+            var validationResult = ValidateStages(jsonStagesResult.Value, numberOfImages.Value);
             if (validationResult.Status == ResultStatus.Failure)
             {
                 return new Failure<Game>(validationResult.ErrorMessage);
@@ -81,7 +87,20 @@ namespace EdlinSoftware.MemoryCards.UI.Models
         }
 
         [NotNull]
-        private static Result ValidateStages(JsonStage[] stages)
+        private static Result<int> GetNumberOfImages([NotNull] string gameFolder)
+        {
+            var imagesResult = new ImagesProvider().GetImagesPaths(gameFolder);
+            if(imagesResult.Status == ResultStatus.Failure)
+                return new Failure<int>(imagesResult.ErrorMessage);
+
+            if(imagesResult.Value.Length == 0)
+                return new Failure<int>($"There is no images for game in '{gameFolder}' folder.");
+
+            return new Success<int>(imagesResult.Value.Length);
+        }
+
+        [NotNull]
+        private static Result ValidateStages(JsonStage[] stages, int numberOfImages)
         {
             if ((stages?.Length ?? 0) == 0)
                 return new Failure("No stages");
@@ -93,6 +112,8 @@ namespace EdlinSoftware.MemoryCards.UI.Models
                 var stage = stages[i];
                 if (string.IsNullOrWhiteSpace(stage.Name))
                     return new Failure($"Stage #{i + 1}. Name can't be null or empty");
+                if (stage.TimeToSolve < 0)
+                    return new Failure($"Stage #{i + 1}. Time to solve the stage must be non-negative");
                 if (stage.CardsInGroup < 2)
                     return new Failure($"Stage #{i + 1}. Number of cards in group should be greater that 1");
                 if ((stage.CardsRows?.Length ?? 0) == 0)
@@ -100,6 +121,8 @@ namespace EdlinSoftware.MemoryCards.UI.Models
                 Contract.Assume(stage.CardsRows != null);
                 if ((stage.CardsRows.Sum() % stage.CardsInGroup) != 0)
                     return new Failure($"Stage #{i + 1}. Total number of cards in all rows should be divisible by size of group");
+                if ((stage.CardsRows.Sum() / stage.CardsInGroup) > numberOfImages)
+                    return new Failure($"Stage #{i + 1}. {stage.CardsRows.Sum() / stage.CardsInGroup} images required for this stage but only {numberOfImages} available");
             }
 
             return new Success();
@@ -109,7 +132,7 @@ namespace EdlinSoftware.MemoryCards.UI.Models
         {
             return new Game(Path.GetFileName(gameFolder),
                 stages
-                    .Select(s => new GameStage(s.Name, s.CardsInGroup, s.CardsRows))
+                    .Select(s => new GameStage(s.Name, s.TimeToSolve, s.CardsInGroup, s.CardsRows))
                     .ToArray());
         }
     }

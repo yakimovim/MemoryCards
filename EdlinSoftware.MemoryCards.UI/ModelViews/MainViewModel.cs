@@ -5,17 +5,29 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
+using EdlinSoftware.MemoryCards.UI.Events;
 using EdlinSoftware.MemoryCards.UI.Models;
 using EdlinSoftware.MemoryCards.UI.Properties;
 
 namespace EdlinSoftware.MemoryCards.UI.ModelViews
 {
-    internal class MainViewModel : BaseViewModel
+    internal class MainViewModel : BaseViewModel, 
+        IListener<StartNewGame>,
+        IListener<GameIsWon>,
+        IListener<StartNewStage>,
+        IListener<StageIsWon>,
+        IListener<StageIsLost>
     {
         private Game _game;
         private string _currentGameFolder;
         private int _currentStageIndex;
-        private StageViewModel _currentStage;
+        private GameStage _currentStage;
+
+        private int _timeToSolve;
+        private int _timeLeft;
+
+        private DispatcherTimer _timer;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly ObservableCollection<GameMenuItemViewModel> _games =
@@ -25,79 +37,42 @@ namespace EdlinSoftware.MemoryCards.UI.ModelViews
         public MainViewModel()
         {
             ReadExistingGames();
+
+            EventBroker.Instance.AddListener(this);
         }
 
         private void ReadExistingGames()
         {
-            var startGameCommand = new DelegateCommand(arg =>
-            {
-                var gameFolder = (string)arg;
-
-                var gameResult = GameReader.ReadGame(gameFolder);
-                if (gameResult.Status == ResultStatus.Failure)
-                {
-                    MessageBox.Show(gameResult.ErrorMessage);
-                    return;
-                }
-
-                _game = gameResult.Value;
-                _currentGameFolder = gameFolder;
-
-                StartStage(0);
-            });
-
             foreach (var gameFolder in GameReader.GetGameFolders())
             {
                 Contract.Assume(gameFolder != null);
 
                 _games.Add(new GameMenuItemViewModel(
                     Path.GetFileName(gameFolder),
-                    gameFolder,
-                    startGameCommand
+                    gameFolder
                     ));
             }
         }
 
         private void StartStage(int stageIndex)
         {
-            if (CurrentStage != null)
-                CurrentStage.StageIsFinished -= OnStageFinished;
-
             _currentStageIndex = stageIndex;
             if (_currentStageIndex >= _game.Stages.Length)
             {
-                CurrentStage = null;
+                EventBroker.Instance.SendMessage(new GameIsWon());
             }
             else
             {
-                CurrentStage = new StageViewModel(_game.Stages[_currentStageIndex], _currentGameFolder);
-                CurrentStage.StageIsFinished += OnStageFinished;
-            }
-        }
+                _currentStage = _game.Stages[_currentStageIndex];
 
-        private void OnStageFinished(object sender, EventArgs e)
-        {
-            StartStage(_currentStageIndex + 1);
+                EventBroker.Instance.SendMessage(new StartNewStage(_currentStage, _currentGameFolder));
+            }
         }
 
         public ObservableCollection<GameMenuItemViewModel> Games
         {
             [DebuggerStepThrough]
             get { return _games; }
-        }
-
-        public StageViewModel CurrentStage
-        {
-            [DebuggerStepThrough]
-            get { return _currentStage; }
-            set
-            {
-                if (_currentStage != value)
-                {
-                    _currentStage = value;
-                    OnPropertyChanged();
-                }
-            }
         }
 
         public ICommand ExitCommand
@@ -117,6 +92,105 @@ namespace EdlinSoftware.MemoryCards.UI.ModelViews
                     }
                 });
             }
+        }
+
+        public int TimeToSolve
+        {
+            [DebuggerStepThrough]
+            get { return _timeToSolve; }
+            set
+            {
+                if (_timeLeft != value)
+                {
+                    _timeToSolve = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int TimeLeft
+        {
+            [DebuggerStepThrough]
+            get { return _timeLeft; }
+            set
+            {
+                if (_timeLeft != value)
+                {
+                    _timeLeft = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void StartTimer()
+        {
+            if(_currentStage == null)
+                return;
+            if(_currentStage.TimeToSolve == 0)
+                return;
+
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(Settings.Default.TimerIntervalInMilliseconds)
+            };
+            _timer.Tick += OnTimeProgress;
+            _timer.Start();
+        }
+
+        private void OnTimeProgress(object sender, EventArgs e)
+        {
+            TimeLeft = Math.Max(0, TimeLeft - Settings.Default.TimerIntervalInMilliseconds);
+            if (TimeLeft == 0)
+            {
+                EventBroker.Instance.SendMessage(new StageIsLost(_currentStage));
+            }
+        }
+
+        private void StopTimer()
+        {
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer = null;
+            }
+        }
+
+        void IListener<StartNewGame>.Handle(StartNewGame message)
+        {
+            _game = message.NewGame;
+            _currentGameFolder = message.GameFolder;
+
+            StartStage(0);
+        }
+
+        void IListener<GameIsWon>.Handle(GameIsWon message)
+        {
+            StopTimer();
+
+            TimeToSolve = 0;
+            TimeLeft = 0;
+
+            _currentStage = null;
+            _currentGameFolder = null;
+        }
+
+        void IListener<StartNewStage>.Handle(StartNewStage message)
+        {
+            TimeToSolve = message.NewStage.TimeToSolve;
+            TimeLeft = message.NewStage.TimeToSolve;
+            StartTimer();
+        }
+
+        void IListener<StageIsWon>.Handle(StageIsWon message)
+        {
+            StopTimer();
+
+            StartStage(_currentStageIndex + 1);
+        }
+
+        void IListener<StageIsLost>.Handle(StageIsLost message)
+        {
+            StopTimer();
         }
     }
 }

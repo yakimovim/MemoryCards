@@ -9,17 +9,12 @@ namespace EdlinSoftware.MemoryCards.UI.ModelViews
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void RefreshBindings()
         {
-            var type = this.GetType();
+            var type = GetType();
 
             foreach (var propertyInfo in type.GetProperties())
             {

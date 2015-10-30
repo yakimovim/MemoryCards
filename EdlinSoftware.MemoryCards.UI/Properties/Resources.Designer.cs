@@ -61,24 +61,6 @@ namespace EdlinSoftware.MemoryCards.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click Me.
-        /// </summary>
-        public static string ClickMe {
-            get {
-                return ResourceManager.GetString("ClickMe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter your name:.
-        /// </summary>
-        public static string EnterYourName {
-            get {
-                return ResourceManager.GetString("EnterYourName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to leave the game?.
         /// </summary>
         public static string ExitConfirmationText {
